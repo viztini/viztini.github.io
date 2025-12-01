@@ -1,10 +1,10 @@
 # viztini's tech blog
 
-A retro-styled personal tech blog with Windows 95/98 aesthetics and cyberpunk elements.
+viztini's tech blog | exploring the digital frontier
 
 ## About
 
-This is a static HTML/CSS website exploring low-level programming, OS development, Linux, CLI applications, and AI.
+This is a retro-styled personal tech blog with Windows 95/98 aesthetics and cyberpunk elements.
 
 ## Features
 
