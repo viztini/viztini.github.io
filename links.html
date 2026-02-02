@@ -1,76 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Links - Connect with viztini">
+    <meta name="description" content="Network Neighborhood - viztini">
     <meta name="author" content="viztini">
-    <title>Links - viztini's tech blog</title>
+    <title>Network Neighborhood - viztini's tech blog</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .ascii-icon {
+            font-family: 'Courier New', monospace;
+            font-size: 8px;
+            line-height: 8px;
+            white-space: pre;
+            color: var(--win-black);
+            margin-bottom: 5px;
+            text-align: center;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .w95-icon-item {
+            width: auto;
+            min-width: 80px;
+        }
+    </style>
+    <!-- Network Links -->
 </head>
+
 <body>
     <div class="page-container">
         <div class="max-width-container">
-            <!-- Main Window -->
             <div class="window-frame">
                 <div class="title-bar">
-                    <span class="title-text">Links - viztini's tech blog</span>
+                    <div class="title-bar-left">
+                        <img src="favicon.ico" alt="" class="title-icon">
+                        <span class="title-text">Network Neighborhood</span>
+                    </div>
                     <div class="title-buttons">
                         <button class="title-button">_</button>
                         <button class="title-button">□</button>
                         <button class="title-button">×</button>
                     </div>
                 </div>
-                
-                <div class="window-content">
-                    <!-- Header -->
-                    <div class="header">
-                        <h1>Links</h1>
-                        <p class="subtitle">// connecting nodes in the wired</p>
-                    </div>
 
-                    <!-- Navigation -->
+                <div class="window-content">
                     <nav class="nav-bar">
-                        <a href="index.html" class="nav-link">[home]</a>
-                        <a href="archive.html" class="nav-link">[archive]</a>
-                        <a href="about.html" class="nav-link">[about]</a>
-                        <a href="links.html" class="nav-link active">[links]</a>
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="archive.html" class="nav-link">Archive</a>
+                        <a href="about.html" class="nav-link">Properties</a>
+                        <a href="links.html" class="nav-link active">Network</a>
                     </nav>
 
-                    <!-- Terminal Section -->
-                    <div class="terminal-section">
-                        <div class="terminal-content">
-                            <pre>$ cat links.txt
-&gt; connecting to the network...
-&gt; protocol: layer_07
-&gt; presence: everywhere and nowhere
-&gt; status: [ ONLINE ]</pre>
-                        </div>
+                    <div
+                        style="padding: 10px; background: white; border: 2px solid; border-color: var(--win-gray-dark) var(--win-white) var(--win-white) var(--win-gray-dark); margin-bottom: 20px;">
+                        <span style="font-size: 11px;">Address:</span>
+                        <input type="text" value="\\THE_WIRED\CONNECTIONS" readonly
+                            style="width: 300px; font-family: inherit; font-size: 11px; margin-left: 5px; border: 1px solid var(--win-gray-dark);">
                     </div>
 
-                    <!-- Links Section -->
-                    <div class="content-box">
-                        <h2 class="box-title">Contact & Connect</h2>
-                        <div class="links-list">
-                            <a href="mailto:viztini@proton.me" class="link-button">
-                                viztini@proton.me
-                            </a>
-                            <a href="https://github.com/viztini" target="_blank" rel="noopener noreferrer" class="link-button">
-                                https://github.com/viztini
-                            </a>
-                            <a href="https://github.com/viztini/viztini.github.io" target="_blank" rel="noopener noreferrer" class="link-button">
-                                view the source code on github
-                            </a>
+                    <div
+                        style="background: white; border: 2px solid; border-color: var(--win-gray-dark) var(--win-white) var(--win-white) var(--win-gray-dark); padding: 15px; height: 300px;">
+
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
+                            <img src="favicon.ico" alt="" style="width: 32px; height: 32px; margin-right: 15px;">
+                            <div>
+                                <a href="mailto:viztini@proton.me"
+                                    style="font-size: 12px; font-weight: bold; color: var(--win-navy);">Email</a>
+                                <p style="margin-top: 5px;">Contact me directly via email at viztini@proton.me.</p>
+                                <p style="color: var(--win-gray-dark); margin-top: 2px;">Protocol: SMTP/IMAP</p>
+                            </div>
                         </div>
+
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
+                            <img src="favicon.ico" alt="" style="width: 32px; height: 32px; margin-right: 15px;">
+                            <div>
+                                <a href="https://github.com/viztini" target="_blank" rel="noopener noreferrer"
+                                    style="font-size: 12px; font-weight: bold; color: var(--win-navy);">GitHub
+                                    Profile</a>
+                                <p style="margin-top: 5px;">Check out my repositories, open source contributions, and
+                                    code snippets.</p>
+                                <p style="color: var(--win-gray-dark); margin-top: 2px;">Protocol: HTTPS</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
+                            <img src="favicon.ico" alt="" style="width: 32px; height: 32px; margin-right: 15px;">
+                            <div>
+                                <a href="https://github.com/viztini/viztini.github.io" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="font-size: 12px; font-weight: bold; color: var(--win-navy);">Source Code</a>
+                                <p style="margin-top: 5px;">View the source code for this website. Powered by HTML, CSS,
+                                    and JS.</p>
+                                <p style="color: var(--win-gray-dark); margin-top: 2px;">Type: Repository</p>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
 
-            <!-- Status Bar -->
             <div class="status-bar">
-                <div class="status-item">Links loaded</div>
+                <div class="status-item">3 object(s)</div>
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
+
 </html>

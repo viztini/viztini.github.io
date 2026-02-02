@@ -1,122 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About viztini - Low-level programming enthusiast, OS developer, and AI researcher">
+    <meta name="description" content="About viztini - System Properties">
     <meta name="author" content="viztini">
-    <title>About - viztini's tech blog</title>
+    <title>System Properties - viztini's tech blog</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- About page info -->
 </head>
+
 <body>
     <div class="page-container">
-        <div class="max-width-container">
-            <!-- Main Window -->
+        <div class="max-width-container" style="width: 500px;">
             <div class="window-frame">
                 <div class="title-bar">
-                    <span class="title-text">About - viztini's tech blog</span>
+                    <div class="title-bar-left">
+                        <img src="favicon.ico" alt="" class="title-icon">
+                        <span class="title-text">System Properties</span>
+                    </div>
                     <div class="title-buttons">
-                        <button class="title-button">_</button>
-                        <button class="title-button">□</button>
+                        <button class="title-button">?</button>
                         <button class="title-button">×</button>
                     </div>
                 </div>
-                
-                <div class="window-content">
-                    <!-- Header -->
-                    <div class="header">
-                        <h1>About</h1>
-                        <p class="subtitle">// who runs this digital corner?</p>
-                    </div>
 
-                    <!-- Navigation -->
+                <div class="window-content">
                     <nav class="nav-bar">
-                        <a href="index.html" class="nav-link">[home]</a>
-                        <a href="archive.html" class="nav-link">[archive]</a>
-                        <a href="about.html" class="nav-link active">[about]</a>
-                        <a href="links.html" class="nav-link">[links]</a>
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="archive.html" class="nav-link">Archive</a>
+                        <a href="about.html" class="nav-link active">Properties</a>
+                        <a href="links.html" class="nav-link">Network</a>
                     </nav>
 
-                    <!-- Terminal Section -->
-                    <div class="terminal-section">
-                        <div class="terminal-content">
-                            <pre>&gt; USER PROFILE LOADING...
-&gt; 
-&gt; NAME: viztini
-&gt; LOCATION: the wired
-&gt; INTERESTS: low-level programming, OS dev, CLI apps, AI
-&gt; STATUS: perpetually learning
-&gt;
-&gt; "Code close to the metal, think beyond the machine."</pre>
-                        </div>
+                    <div class="w95-tabs">
+                        <div class="w95-tab active" data-target="tab-general">General</div>
+                        <div class="w95-tab" data-target="tab-skills">Device Manager</div>
+                        <div class="w95-tab" data-target="tab-hardware">Performance</div>
                     </div>
 
-<!-- About Me Section -->
-<div class="content-box">
-    <h2 class="box-title">About Me</h2>
-    <div class="text-content">
-        <p>
-            Hey, I'm viztini. I spend most of my time messing with Linux, building CLI tools, 
-            and tinkering close to the hardware.
-        </p>
-        <p>
-            Right now, I'm going through Harvard's CS50 and poking around AI research. I like 
-            figuring out how things really work—kernel modules, command-line utilities, or 
-            whatever sparks my curiosity.
-        </p>
-        <p>
-            This is where I jot down what I'm learning, share cool tricks, and connect with 
-            people who love code as much as I do.
-        </p>
-        <p class="terminal-text code-snippet">
-            &gt; printf("Hello, World!\n");
-        </p>
-    </div>
-</div>
-                    <!-- Skills Section -->
-                    <div class="content-box">
-                        <h2 class="box-title">Skills & Interests</h2>
-                        <div class="skills-grid">
-                            <div class="skill-item">
-                                <span class="skill-label">Focus:</span> Software Development
+                    <div class="w95-tab-content-container">
+
+                        <div id="tab-general" class="w95-tab-pane active">
+                            <div style="display: flex; gap: 20px; text-align: center; margin-bottom: 20px;">
+                                <div style="width: 80px; flex-shrink: 0;">
+                                    <pre style="font-size: 10px; line-height: 8px; color: var(--win-navy);">
+  .-------.
+  |  _ _  |
+  | |_|_| |
+  |       |
+  |_______|
+    |___|
+   [_____]
+                                    </pre>
+                                </div>
+                                <div style="text-align: left;">
+                                    <p style="font-weight: bold; margin-bottom: 5px;">System:</p>
+                                    <p style="margin-left: 10px;">Microsoft Windows 95</p>
+                                    <p style="margin-left: 10px;">4.00.950 B</p>
+                                    <br>
+                                    <p style="font-weight: bold; margin-bottom: 5px;">Registered to:</p>
+                                    <p style="margin-left: 10px;">viztini</p>
+                                    <p style="margin-left: 10px;">The Wired</p>
+                                    <br>
+                                    <p style="font-weight: bold; margin-bottom: 5px;">Computer:</p>
+                                    <p style="margin-left: 10px;">Pentium(r)</p>
+                                    <p style="margin-left: 10px;">64.0 MB RAM</p>
+                                </div>
                             </div>
-                            <div class="skill-item">
-                                <span class="skill-label">OS:</span> Windows 11 with Gentoo Linux WSL
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-label">Tools:</span> CLI applications
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-label">Learning:</span> CS50 + AI
+                            <div class="prop-group">
+                                <p><strong>Bio:</strong></p>
+                                <p style="margin-top: 5px;">Low-level programming enthusiast, OS developer, and AI
+                                    researcher. Exploring the boundaries between the physical world and the digital
+                                    frontier.</p>
                             </div>
                         </div>
+
+                        <div id="tab-skills" class="w95-tab-pane">
+                            <p style="margin-bottom: 10px;">View devices by type.</p>
+
+                            <div
+                                style="border: 2px solid; border-color: var(--win-gray-dark) var(--win-white) var(--win-white) var(--win-gray-dark); background: white; padding: 10px; height: 180px; overflow-y: scroll;">
+
+                                <div style="margin-bottom: 8px;">
+                                    <strong>[-] Programming Languages (Expert)</strong>
+
+                                    <div style="margin-left: 20px; margin-top: 4px;">
+                                        <div style="margin-bottom: 4px;">Shell Scripting</div>
+                                        <div class="skill-bar-container">
+                                            <div class="skill-bar-fill" style="width: 95%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left: 20px; margin-top: 8px;">
+                                        <div style="margin-bottom: 4px;">Python</div>
+                                        <div class="skill-bar-container">
+                                            <div class="skill-bar-fill" style="width: 95%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left: 20px; margin-top: 8px;">
+                                        <div style="margin-bottom: 4px;">Java</div>
+                                        <div class="skill-bar-container">
+                                            <div class="skill-bar-fill" style="width: 90%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left: 20px; margin-top: 8px;">
+                                        <div style="margin-bottom: 4px;">HTML / CSS / JS</div>
+                                        <div class="skill-bar-container">
+                                            <div class="skill-bar-fill" style="width: 90%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 8px;">
+                                    <strong>[-] Programming Languages (Proficient)</strong>
+
+                                    <div style="margin-left: 20px; margin-top: 4px;">
+                                        <div style="margin-bottom: 4px;">C</div>
+                                        <div class="skill-bar-container">
+                                            <div class="skill-bar-fill" style="width: 75%;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left: 20px; margin-top: 8px;">
+                                        <div style="margin-bottom: 4px;">Ruby</div>
+                                        <div class="skill-bar-container">
+                                            <div class="skill-bar-fill" style="width: 70%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 8px;">
+                                    <strong>[+] System & Tools</strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div id="tab-hardware" class="w95-tab-pane">
+                            <p style="font-weight: bold; margin-bottom: 10px;">Performance Status</p>
+
+                            <div class="prop-row">
+                                <div class="prop-label">Memory:</div>
+                                <div class="prop-value">64.0 MB of RAM</div>
+                            </div>
+                            <div class="prop-row">
+                                <div class="prop-label">System Resources:</div>
+                                <div class="prop-value">84% free</div>
+                            </div>
+                            <div class="prop-row">
+                                <div class="prop-label">File System:</div>
+                                <div class="prop-value">32-bit</div>
+                            </div>
+                            <div class="prop-row">
+                                <div class="prop-label">Virtual Memory:</div>
+                                <div class="prop-value">32-bit</div>
+                            </div>
+                            <div class="prop-row">
+                                <div class="prop-label">Disk Compression:</div>
+                                <div class="prop-value">Not installed</div>
+                            </div>
+                            <div class="prop-row">
+                                <div class="prop-label">PC Cards (PCMCIA):</div>
+                                <div class="prop-value">No PC Card sockets are installed</div>
+                            </div>
+
+
+                        </div>
+
                     </div>
 
-                    <!-- Contact Section -->
-                    <div class="content-box">
-                        <h2 class="box-title">Contact</h2>
-                        <div class="contact-info">
-                            <p>
-                                <span class="contact-label">Email:</span>
-                                <a href="mailto:viztini@proton.me">viztini@proton.me</a>
-                            </p>
-                            <p>
-                                <span class="contact-label">GitHub:</span>
-                                <a href="https://github.com/viztini" target="_blank" rel="noopener noreferrer">github.com/viztini</a>
-                            </p>
-                            <p class="contact-note">
-                                Feel free to reach out for collaboration or discussions!
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <!-- Status Bar -->
             <div class="status-bar">
-                <div class="status-item">Profile loaded</div>
+                <div class="status-item">1 object(s) selected</div>
+                <div class="status-item">420 bytes</div>
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
