@@ -125,7 +125,7 @@ function initKonamiCode() {
 
 function activatePartyMode() {
     document.body.classList.toggle('easter-egg-mode');
-    alert("SYSTEM ALERT: PART Y MODE ACTIVATED!");
+    alert("SYSTEM ALERT: PARTY MODE ACTIVATED");
 }
 
 function triggerBootScreen() {
@@ -245,3 +245,4 @@ function initBSOD() {
         });
     }
 }
+
