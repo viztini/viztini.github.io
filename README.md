@@ -24,4 +24,4 @@ Simply open `index.html` in your browser. No build process required!
 
 ## License
 
-© 2025 viztini | All rights reserved
+© 2026 viztini | All rights reserved
