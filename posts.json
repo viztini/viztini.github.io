@@ -1,10 +1,10 @@
 [
     {
         "id": "welcome-wired",
-        "title": "Welcome to the Wired (PINNED)",
+        "title": "Welcome to viztini's tech blog",
         "date": "2025.01.12",
-        "content": "Welcome to viztini's tech blog, here I explore the boundaries between the physical world and the wired (the cloud, the internet, the network, whatever you want to call it), the depths of technology, consciousness, and the ever-evolving digital landscape. Are you ready to disconnect from reality?",
-        "tags": ["#philosophy", "#cyberpunk", "#intro"],
+        "content": "viztini’s tech blog --- projects, experiments, and whatever I’m debugging lately.",
+        "tags": ["#tech", "#blog", "#intro"],
         "pinned": true
     },
     {
@@ -19,7 +19,7 @@
         "id": "happy-new-year-2026",
         "title": "Happy New Year!",
         "date": "2026.01.01",
-        "content": "I hope you all had a wonderful holiday break. Apologies for the lack of posts in December, I was away on holiday. I’m excited to be back and can’t wait to see what this year brings for technology!",
+        "content": "I hope you all had a wonderful holiday break. Sorry for not posting in December, I was away on holiday. I’m excited to be back and can’t wait to see what this year brings for technology!",
         "tags": ["#2026", "#holiday", "#newyear"],
         "pinned": false
     },
@@ -27,7 +27,7 @@
         "id": "osaka-09",
         "title": "Osaka '09",
         "date": "2025.12.17",
-        "content": "Recently I have been working on my retro Linux Distro, Osaka '09.\nOsaka ’09 is a handcrafted Linux distro inspired by the late‑2000s aesthetic of glossy UI chrome, soft gradients, and playful skeuomorphism. It blends the charm of Windows‑era design with a distinctly Japanese‑influenced retro‑modern vibe — a look that feels like it could’ve shipped on a 2009 ultrabook straight out of Umeda.",
+        "content": "Recently I have been working on my retro Linux Distro, Osaka '09. Development is frustrating...",
         "tags": ["#linux", "#japan", "#retro"],
         "pinned": false
     },
@@ -56,3 +56,4 @@
         "pinned": false
     }
 ]
+
