@@ -1,12 +1,154 @@
 // Core logic for viztini.github.io
 
 document.addEventListener('DOMContentLoaded', () => {
-    initPagination();
-    initRelativeDates();
+    loadPosts();
     initTabs();
     initKonamiCode();
     initBSOD();
 });
+
+let allPosts = [];
+let searchQuery = '';
+let activeTag = '';
+
+async function loadPosts() {
+    try {
+        const response = await fetch('posts.json');
+        allPosts = await response.json();
+
+        // Sort posts by date descending, but keep pinned posts at the top
+        allPosts.sort((a, b) => {
+            if (a.pinned && !b.pinned) return -1;
+            if (!a.pinned && b.pinned) return 1;
+            return new Date(b.date.replace(/\./g, '-')) - new Date(a.date.replace(/\./g, '-'));
+        });
+
+        const path = window.location.pathname;
+        if (path.endsWith('index.html') || path === '/' || path.endsWith('/')) {
+            renderRecentPosts();
+            initSearch();
+            initTagFiltering();
+        } else if (path.endsWith('archive.html')) {
+            renderArchive();
+        }
+
+        initRelativeDates();
+    } catch (error) {
+        console.error('Error loading posts:', error);
+        const container = document.getElementById('blog-container') || document.querySelector('.archive-section');
+        if (container) {
+            container.innerHTML = '<p class="error">> ERROR: FAILED TO LOAD SYSTEM DATA...</p>';
+        }
+    }
+}
+
+function renderRecentPosts() {
+    const container = document.getElementById('blog-container');
+    if (!container) return;
+
+    // Filter posts
+    const filteredPosts = allPosts.filter(post => {
+        const matchesQuery = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.content.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesTag = activeTag ? post.tags.includes(activeTag) : true;
+        return matchesQuery && matchesTag;
+    });
+
+    // Keep the section title
+    const title = container.querySelector('.section-title');
+    container.innerHTML = '';
+    if (title) container.appendChild(title);
+
+    if (filteredPosts.length === 0) {
+        container.innerHTML += '<p class="no-results">> NO MATCHING FILES FOUND.</p>';
+        updateStatusBar(`Search complete. 0 files found.`);
+    } else {
+        filteredPosts.forEach((post, index) => {
+            const article = document.createElement('article');
+            article.className = `blog-post${post.pinned ? ' pinned' : ''}`;
+
+            // Handle pagination (initial state) - only if no search/filter active
+            if (!searchQuery && !activeTag && index >= 5) {
+                article.classList.add('hidden');
+            }
+
+            const displayTitle = highlightText(post.title, searchQuery);
+            const displayContent = highlightText(post.content.replace(/\n/g, '<br>'), searchQuery);
+
+            article.innerHTML = `
+                <div class="blog-post-inner">
+                    <div class="post-header">
+                        <h3>${displayTitle}</h3>
+                        <span class="post-date">${post.date}</span>
+                    </div>
+                    <div class="post-content">${displayContent}</div>
+                    <div class="post-tags">
+                        ${post.tags.map(tag => `<span class="tag" data-tag="${tag}">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            container.appendChild(article);
+        });
+
+        const statusMsg = (searchQuery || activeTag)
+            ? `Found ${filteredPosts.length} post(s) matching your criteria.`
+            : `System ready. ${allPosts.length} posts loaded.`;
+        updateStatusBar(statusMsg);
+    }
+
+    initPagination();
+    attachTagListeners();
+}
+
+function renderArchive() {
+    const container = document.querySelector('.archive-section');
+    if (!container) return;
+
+    // Keep the header
+    const header = container.querySelector('.header') || container.closest('.window-content').querySelector('.header');
+    const nav = container.closest('.window-content').querySelector('.nav-bar');
+
+    // Group marks by year
+    const years = {};
+    allPosts.forEach(post => {
+        const year = post.date.split('.')[0];
+        if (!years[year]) years[year] = [];
+        years[year].push(post);
+    });
+
+    // Clear and rebuild
+    const windowContent = container.closest('.window-content');
+    const oldSections = windowContent.querySelectorAll('.archive-section');
+    oldSections.forEach(s => s.remove());
+
+    const sortedYears = Object.keys(years).sort((a, b) => b - a);
+
+    sortedYears.forEach(year => {
+        const section = document.createElement('div');
+        section.className = 'archive-section';
+
+        let postsHtml = years[year].map(post => `
+            <div class="archive-item">
+                <div class="archive-info">
+                    <h3>${post.title}</h3>
+                    <div class="archive-tags">
+                        ${post.tags.map(tag => `<span class="tag-small">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <span class="archive-date">${post.date}</span>
+            </div>
+        `).join('');
+
+        section.innerHTML = `
+            <h2 class="year-header">${year}</h2>
+            <div class="archive-list">
+                ${postsHtml}
+            </div>
+        `;
+
+        windowContent.insertBefore(section, windowContent.querySelector('.status-bar'));
+    });
+}
 
 function initPagination() {
     const posts = document.querySelectorAll('.blog-post');
@@ -17,9 +159,7 @@ function initPagination() {
     if (!posts.length) return;
 
     posts.forEach((post, index) => {
-        if (index >= postsPerPage) {
-            post.classList.add('hidden');
-        } else {
+        if (index < postsPerPage) {
             visibleCount++;
         }
     });
@@ -28,10 +168,12 @@ function initPagination() {
         loadMoreBtn.classList.add('hidden');
     } else if (loadMoreBtn) {
         loadMoreBtn.classList.remove('hidden');
-    }
 
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', () => {
+        // Remove old listener to prevent duplicates
+        const newBtn = loadMoreBtn.cloneNode(true);
+        loadMoreBtn.parentNode.replaceChild(newBtn, loadMoreBtn);
+
+        newBtn.addEventListener('click', () => {
             let revealed = 0;
             const hiddenPosts = document.querySelectorAll('.blog-post.hidden');
 
@@ -44,14 +186,14 @@ function initPagination() {
 
             const remainingHidden = document.querySelectorAll('.blog-post.hidden').length;
             if (remainingHidden === 0) {
-                loadMoreBtn.classList.add('hidden');
+                newBtn.classList.add('hidden');
             }
         });
     }
 }
 
 function initRelativeDates() {
-    const dateElements = document.querySelectorAll('.post-date');
+    const dateElements = document.querySelectorAll('.post-date, .archive-date');
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
@@ -260,11 +402,8 @@ window.bsod = function () {
         document.addEventListener('keydown', handleReboot);
     }, 500);
 
-return `FATAL EXCEPTION 0E (PAGE_FAULT_IN_NONPAGED_AREA) at 0028:C0011E36
-   STOP: 0x0000000E (0xC0000005, 0xC0011E36, 0x0012FFB0, 0x00000000)
-`;
-}
-
+    return "Kernel panic. CPU halted.";
+};
 
 function initBSOD() {
     const trigger = document.querySelector('.status-item:last-child');
@@ -299,4 +438,75 @@ function showWelcomePopup() {
     document.body.appendChild(img);
 }
 
+function initSearch() {
+    const searchInput = document.getElementById('post-search');
+    const clearBtn = document.getElementById('clear-search');
+    const resetBtn = document.getElementById('reset-filters');
 
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        if (searchQuery) {
+            clearBtn.classList.remove('hidden');
+        } else {
+            clearBtn.classList.add('hidden');
+        }
+        renderRecentPosts();
+    });
+
+    clearBtn.addEventListener('click', () => {
+        searchQuery = '';
+        searchInput.value = '';
+        clearBtn.classList.add('hidden');
+        renderRecentPosts();
+    });
+
+    resetBtn.addEventListener('click', () => {
+        searchQuery = '';
+        activeTag = '';
+        searchInput.value = '';
+        clearBtn.classList.add('hidden');
+        document.getElementById('filter-status').classList.add('hidden');
+        renderRecentPosts();
+    });
+}
+
+function initTagFiltering() {
+    // Initial call to attach listeners to any tags already rendered
+    attachTagListeners();
+}
+
+function attachTagListeners() {
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach(tag => {
+        tag.addEventListener('click', (e) => {
+            e.preventDefault();
+            activeTag = tag.dataset.tag;
+
+            const filterStatus = document.getElementById('filter-status');
+            const activeFilterName = document.getElementById('active-filter-name');
+
+            if (activeTag) {
+                filterStatus.classList.remove('hidden');
+                activeFilterName.textContent = activeTag;
+                window.scrollTo({ top: document.querySelector('.search-container').offsetTop - 20, behavior: 'smooth' });
+            }
+
+            renderRecentPosts();
+        });
+    });
+}
+
+function updateStatusBar(message) {
+    const statusItem = document.querySelector('.status-item:first-child');
+    if (statusItem) {
+        statusItem.textContent = message;
+    }
+}
+
+function highlightText(text, query) {
+    if (!query) return text;
+    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<span class="search-highlight">$1</span>');
+}

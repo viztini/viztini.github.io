@@ -339,6 +339,102 @@ body.noscroll {
     display: none !important;
 }
 
+.search-container {
+    margin-bottom: 15px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--win-gray);
+    padding: 4px;
+    border: 2px solid;
+    border-color: var(--win-gray-dark) var(--win-white) var(--win-white) var(--win-gray-dark);
+    margin-bottom: 8px;
+}
+
+.search-bar label {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    height: 20px;
+    border: 2px solid;
+    border-color: var(--win-gray-dark) var(--win-white) var(--win-white) var(--win-gray-dark);
+    background: var(--win-white);
+    padding: 0 5px;
+    font-family: inherit;
+    font-size: 11px;
+    outline: none;
+}
+
+#clear-search {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    line-height: normal;
+    font-size: 14px;
+    border: 1px solid;
+    border-color: var(--win-white) var(--win-gray-darker) var(--win-gray-darker) var(--win-white);
+    background: var(--win-gray);
+    cursor: pointer;
+}
+
+#clear-search:active {
+    border-color: var(--win-gray-darker) var(--win-white) var(--win-white) var(--win-gray-darker);
+}
+
+.filter-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    background: #ffffcc;
+    border: 1px solid var(--win-gray-dark);
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+#reset-filters {
+    font-family: inherit;
+    font-size: 10px;
+    padding: 2px 6px;
+    background: var(--win-gray);
+    border: 1px solid;
+    border-color: var(--win-white) var(--win-gray-darker) var(--win-gray-darker) var(--win-white);
+    cursor: pointer;
+}
+
+#reset-filters:active {
+    border-color: var(--win-gray-darker) var(--win-white) var(--win-white) var(--win-gray-darker);
+}
+
+.tag {
+    font-size: 10px;
+    color: var(--win-navy);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.tag:hover {
+    color: var(--win-black);
+    background: #ffffcc;
+}
+
+.search-highlight {
+    background-color: var(--win-navy);
+    color: var(--win-white);
+    padding: 0 1px;
+}
+
+.hidden {
+    display: none !important;
+}
+
 .archive-list {
     background: var(--win-white);
     border: 2px solid;

@@ -1,0 +1,58 @@
+[
+    {
+        "id": "welcome-wired",
+        "title": "Welcome to the Wired (PINNED)",
+        "date": "2025.01.12",
+        "content": "Welcome to viztini's tech blog, here I explore the boundaries between the physical world and the wired (the cloud, the internet, the network, whatever you want to call it), the depths of technology, consciousness, and the ever-evolving digital landscape. Are you ready to disconnect from reality?",
+        "tags": ["#philosophy", "#cyberpunk", "#intro"],
+        "pinned": true
+    },
+    {
+        "id": "welcome-site",
+        "title": "Welcome to the New Site",
+        "date": "2026.02.02",
+        "content": "I've completely overhauled the website to bring it back to the golden age of computing.\n\nEnjoy the crisp gray backgrounds, the comforting teal desktop, and the satisfying click of un-smoothed fonts.\n\nThis new design is cleaner, faster, and more \"Windows 95\" than ever before.\n\nAlso open the developer console and type \"bsod()\" to see a system integrity violation.",
+        "tags": ["#website", "#design", "#win95"],
+        "pinned": false
+    },
+    {
+        "id": "happy-new-year-2026",
+        "title": "Happy New Year!",
+        "date": "2026.01.01",
+        "content": "I hope you all had a wonderful holiday break. Apologies for the lack of posts in December, I was away on holiday. I’m excited to be back and can’t wait to see what this year brings for technology!",
+        "tags": ["#2026", "#holiday", "#newyear"],
+        "pinned": false
+    },
+    {
+        "id": "osaka-09",
+        "title": "Osaka '09",
+        "date": "2025.12.17",
+        "content": "Recently I have been working on my retro Linux Distro, Osaka '09.\nOsaka ’09 is a handcrafted Linux distro inspired by the late‑2000s aesthetic of glossy UI chrome, soft gradients, and playful skeuomorphism. It blends the charm of Windows‑era design with a distinctly Japanese‑influenced retro‑modern vibe — a look that feels like it could’ve shipped on a 2009 ultrabook straight out of Umeda.",
+        "tags": ["#linux", "#japan", "#retro"],
+        "pinned": false
+    },
+    {
+        "id": "unc2891-hackers",
+        "title": "UNC2891 Hackers Use Linux Malware in Major Banking Security Heists",
+        "date": "2025.11.30",
+        "content": "UNC2891 slipped Raspberry Pi implants into ATM network paths, used simple Linux privilege-escalation tools, and hid their activity with bind mounts to quietly control transaction switches for years.\n\nThat foothold let them clone cards, run mule cashouts across multiple countries, and exploit long-standing structural weaknesses in banking networks that looked secure only on paper.",
+        "tags": ["#linux", "#malware", "#cybersecurity"],
+        "pinned": false
+    },
+    {
+        "id": "offline-llms",
+        "title": "Offline LLMs Are Actually Useful Now",
+        "date": "2025.11.26",
+        "content": "Quantization, lightweight runtimes, and model distillation let multi-billion-parameter models run locally on laptops.\n\nFor privacy-first workflows and reproducible experiments, an offline model can be dramatically more practical than it was two years ago, that is if you accept some tradeoffs in latency and accuracy.",
+        "tags": ["#ai", "#offline", "#tech"],
+        "pinned": false
+    },
+    {
+        "id": "cli-over-gui",
+        "title": "CLI over GUI",
+        "date": "2025.11.25",
+        "content": "Terminals outperform GUIs for anyone who knows their tools. Commands chain, automate, and scale in ways clicking never will.\n\nA GUI shows options; a CLI lets you shape the system.",
+        "tags": ["#dev", "#cli", "#terminal"],
+        "pinned": false
+    }
+]
