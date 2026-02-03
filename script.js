@@ -261,32 +261,7 @@ window.bsod = function () {
     }, 500);
 
 return `FATAL EXCEPTION 0E (PAGE_FAULT_IN_NONPAGED_AREA) at 0028:C0011E36
-Module: VXD VMM(01) +0x00010E36
-EIP: C0011E36  ESP: 0012FFB0  EBP: 0012FFC8  EFLAGS: 00010246
-
-Call stack:
-  C0011E36  VMM!DispatchInterrupt
-  C0010ABC  VMM!VxDHandler
-  C000F234  Win32k!NtUserCall
-  C000E198  Win32k!DispatchMessage
-  C000D1AC  Kernel32!MainLoop
-
-Debug Info:
-  Current Process: Explorer.exe (PID 0x0000011C)
-  Thread ID: 0x00000004
-  Loaded Modules:
-    VXD VMM(01)   @ C0000000
-    Win32k        @ C000D000
-    Kernel32      @ C000C000
-
-System halted to prevent further memory corruption.
-Recommended Actions:
-  - Verify VXD integrity and version compatibility
-  - Disable any recently installed drivers
-  - Check for memory paging issues or hardware faults
-  - Capture minidump for offline analysis
-
-*** STOP: 0x0000000E (0xC0000005, 0xC0011E36, 0x0012FFB0, 0x00000000)
+   STOP: 0x0000000E (0xC0000005, 0xC0011E36, 0x0012FFB0, 0x00000000)
 `;
 }
 
@@ -323,4 +298,5 @@ function showWelcomePopup() {
 
     document.body.appendChild(img);
 }
+
 
