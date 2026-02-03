@@ -16,7 +16,6 @@ async function loadPosts() {
         const response = await fetch('posts.json');
         allPosts = await response.json();
 
-        // Sort posts by date descending, but keep pinned posts at the top
         allPosts.sort((a, b) => {
             if (a.pinned && !b.pinned) return -1;
             if (!a.pinned && b.pinned) return 1;
@@ -46,7 +45,6 @@ function renderRecentPosts() {
     const container = document.getElementById('blog-container');
     if (!container) return;
 
-    // Filter posts
     const filteredPosts = allPosts.filter(post => {
         const matchesQuery = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.content.toLowerCase().includes(searchQuery.toLowerCase());
@@ -54,7 +52,6 @@ function renderRecentPosts() {
         return matchesQuery && matchesTag;
     });
 
-    // Keep the section title
     const title = container.querySelector('.section-title');
     container.innerHTML = '';
     if (title) container.appendChild(title);
@@ -67,7 +64,6 @@ function renderRecentPosts() {
             const article = document.createElement('article');
             article.className = `blog-post${post.pinned ? ' pinned' : ''}`;
 
-            // Handle pagination (initial state) - only if no search/filter active
             if (!searchQuery && !activeTag && index >= 5) {
                 article.classList.add('hidden');
             }
@@ -104,11 +100,9 @@ function renderArchive() {
     const container = document.querySelector('.archive-section');
     if (!container) return;
 
-    // Keep the header
     const header = container.querySelector('.header') || container.closest('.window-content').querySelector('.header');
     const nav = container.closest('.window-content').querySelector('.nav-bar');
 
-    // Group marks by year
     const years = {};
     allPosts.forEach(post => {
         const year = post.date.split('.')[0];
@@ -116,7 +110,6 @@ function renderArchive() {
         years[year].push(post);
     });
 
-    // Clear and rebuild
     const windowContent = container.closest('.window-content');
     const oldSections = windowContent.querySelectorAll('.archive-section');
     oldSections.forEach(s => s.remove());
@@ -169,7 +162,6 @@ function initPagination() {
     } else if (loadMoreBtn) {
         loadMoreBtn.classList.remove('hidden');
 
-        // Remove old listener to prevent duplicates
         const newBtn = loadMoreBtn.cloneNode(true);
         loadMoreBtn.parentNode.replaceChild(newBtn, loadMoreBtn);
 
@@ -376,14 +368,18 @@ window.bsod = function () {
     bsod.style.boxSizing = 'border-box';
     bsod.style.display = 'block';
 
-    bsod.innerHTML = `
-        <p style="background: #0000AA; display: inline;">A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36. The current application will be terminated.</p>
-        <br><br>
-        <p>* Press any key to terminate the current application.</p>
-        <p>* Press CTRL+ALT+DEL again to restart your computer. You will lose any unsaved information in all applications.</p>
-        <br><br>
-        <p style="text-align: center; margin-top: 50px;">Press Enter to reboot your computer</p>
-    `;
+bsod.innerHTML = `
+    <p style="background:#0000AA; display:inline;">
+        A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36.
+        The system has been halted to prevent further damage.
+    </p>
+
+    <br><br>
+
+    <p>
+        Press <strong>ENTER</strong> to reboot your computer.
+    </p>
+`;
     document.body.appendChild(bsod);
 
     const handleReboot = (e) => {
@@ -510,3 +506,4 @@ function highlightText(text, query) {
     const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
     return text.replace(regex, '<span class="search-highlight">$1</span>');
 }
+
