@@ -255,17 +255,21 @@ body.noscroll {
 }
 
 .blog-post.pinned::before {
-    content: "📌 PINNED POST";
+    content: "PINNED POST";
     position: absolute;
     top: -12px;
     right: 10px;
     background: var(--win-navy);
     color: var(--win-white);
-    padding: 2px 6px;
+    padding: 2px 6px 2px 18px;
     font-size: 9px;
     font-weight: bold;
     border: 1px solid var(--win-white);
     box-shadow: 1px 1px 0 0 var(--win-black);
+    background-image: url('assets/pin.png');
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    background-size: 9px;
 }
 
 .blog-post-inner {
