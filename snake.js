@@ -12,7 +12,7 @@ const COLORS = {
     snakeHead: '#000080', // Win Navy
     snakeBody: '#008080', // Win Teal
     food: '#ff0000',
-    background: '#008080'
+    background: '#000000'
 };
 
 let snake = [{ x: 10, y: 10 }];
@@ -170,3 +170,4 @@ startBtn.addEventListener('click', () => {
 window.addEventListener('keydown', handleInput);
 
 draw();
+
