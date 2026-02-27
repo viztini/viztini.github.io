@@ -1,4 +1,4 @@
-# viztini's tech blog
+# viztini's website
 
 viztini's tech blog | exploring the digital frontier
 
