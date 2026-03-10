@@ -449,8 +449,8 @@ function showWelcomePopup() {
     img.style.transform = 'translate(-50%, -50%)';
     img.style.zIndex = '2147483647';
     img.style.cursor = 'pointer';
-    img.style.width = '40px'; 
-    img.style.height = '40px'; 
+    img.style.width = '100px'; 
+    img.style.height = '100px'; 
     img.style.objectFit = 'contain'; 
 
     img.onclick = () => {
@@ -532,5 +532,6 @@ function highlightText(text, query) {
     const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
     return text.replace(regex, '<span class="search-highlight">$1</span>');
 }
+
 
 
