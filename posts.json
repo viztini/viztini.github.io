@@ -1,7 +1,7 @@
 [
     {
         "id": "welcome-wired",
-        "title": "Welcome to viztini's website - PINNED",
+        "title": "Welcome to viztini's website",
         "date": "2025.12.01",
         "content": "viztini’s website --- projects, experiments, and whatever I’m debugging lately.",
         "tags": ["#tech", "#blog", "#intro"],
@@ -72,6 +72,7 @@
         "pinned": false
     }
 ]
+
 
 
 
