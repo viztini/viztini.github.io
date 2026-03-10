@@ -7,6 +7,14 @@
         "tags": ["#tech", "#blog", "#intro"],
         "pinned": true
     },
+        {
+        "id": "small-redesign",
+        "title": "Tiny redesign!",
+        "date": "2026.10.03",
+        "content": "Small redesigns to the website, mostly adding a home page and stripping bloat",
+        "tags": ["#web", "#website", "#html"],
+        "pinned": false
+    },
     {
         "id": "aerominal-development",
         "title": "Working on my terminal emulator, aerominal",
@@ -64,5 +72,6 @@
         "pinned": false
     }
 ]
+
 
 
