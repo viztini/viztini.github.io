@@ -45,18 +45,18 @@ async function loadPosts() {
 async function loadStatusUpdate() {
     const dateContainer = document.getElementById('status-date');
     const textContainer = document.getElementById('status-text');
-    
+
     if (!dateContainer || !textContainer) return;
 
     try {
         const response = await fetch('status.json');
         if (!response.ok) throw new Error('Failed to fetch status');
-        
+
         const status = await response.json();
-        
+
         dateContainer.textContent = `[ ${status.date} ${status.time} ]`;
         textContainer.textContent = status.status_text;
-        
+
     } catch (error) {
         console.error('Error loading status:', error);
         dateContainer.textContent = '[ STATUS: OFFLINE ]';
@@ -342,6 +342,9 @@ function triggerBootScreen() {
         const video = document.createElement('video');
         video.src = 'assets/boot.mp4';
         video.autoplay = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.loop = false;
         video.style.width = '100%';
         video.style.height = '100%';
         video.style.objectFit = 'contain';
@@ -349,7 +352,10 @@ function triggerBootScreen() {
 
         boot.appendChild(video);
 
-        video.onended = () => {
+        let transitioned = false;
+        const transitionToNext = () => {
+            if (transitioned) return;
+            transitioned = true;
             boot.style.transition = 'opacity 1.5s ease-out';
             boot.style.opacity = '0';
 
@@ -360,8 +366,15 @@ function triggerBootScreen() {
             }, 1500);
         };
 
+        video.onended = transitionToNext;
+
+        setTimeout(transitionToNext, 10000);
+
+        boot.onclick = transitionToNext;
+
         video.onerror = () => {
-            location.reload();
+            console.error("Boot video error, skipping...");
+            transitionToNext();
         };
 
     }, 6500);
@@ -393,7 +406,7 @@ window.bsod = function () {
     bsod.style.boxSizing = 'border-box';
     bsod.style.display = 'block';
 
-bsod.innerHTML = `
+    bsod.innerHTML = `
     <p style="background:#0000AA; display:inline;">
         A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36.
         The system has been halted to prevent further damage.
@@ -446,12 +459,11 @@ function showWelcomePopup() {
     img.style.position = 'fixed';
     img.style.top = '50%';
     img.style.left = '50%';
-    img.style.transform = 'translate(-50%, -50%)';
+    img.style.transform = 'translate(-50%, -50%) scale(1.0)';
     img.style.zIndex = '2147483647';
     img.style.cursor = 'pointer';
-    img.style.width = '100px'; 
-    img.style.height = '100px'; 
-    img.style.objectFit = 'contain'; 
+    img.style.width = '480px';
+    img.style.imageRendering = 'pixelated';
 
     img.onclick = () => {
         img.remove();
@@ -495,7 +507,6 @@ function initSearch() {
 }
 
 function initTagFiltering() {
-    // Initial call to attach listeners to any tags already rendered
     attachTagListeners();
 }
 
@@ -532,6 +543,4 @@ function highlightText(text, query) {
     const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
     return text.replace(regex, '<span class="search-highlight">$1</span>');
 }
-
-
 
