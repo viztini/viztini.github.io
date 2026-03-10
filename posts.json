@@ -1,9 +1,9 @@
 [
     {
         "id": "welcome-wired",
-        "title": "Welcome to viztini's tech blog",
-        "date": "2025.01.12",
-        "content": "viztini’s tech blog --- projects, experiments, and whatever I’m debugging lately.",
+        "title": "Welcome to viztini's website",
+        "date": "2026.03.01",
+        "content": "viztini’s website --- projects, experiments, and whatever I’m debugging lately.",
         "tags": ["#tech", "#blog", "#intro"],
         "pinned": true
     },

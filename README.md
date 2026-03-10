@@ -1,6 +1,6 @@
 # viztini's website
 
-viztini's tech blog | exploring the digital frontier
+viztini's website | exploring the digital frontier
 
 ## License
 

@@ -152,6 +152,28 @@ body.noscroll {
     box-shadow: none;
 }
 
+.win95-button {
+    font-size: 11px;
+    font-family: inherit;
+    border: 1px solid;
+    border-color: var(--win-white) var(--win-gray-darker) var(--win-gray-darker) var(--win-white);
+    background-color: var(--win-gray);
+    box-shadow: -1px -1px 0 0 var(--win-gray-dark) inset;
+    color: var(--win-black);
+    padding: 3px 12px;
+    cursor: default;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.win95-button:active {
+    border-color: var(--win-gray-darker) var(--win-white) var(--win-white) var(--win-gray-darker);
+    box-shadow: 1px 1px 0 0 var(--win-gray-dark) inset;
+    padding: 4px 11px 2px 13px;
+}
+
 .window-content {
     padding: 10px;
 }
@@ -670,4 +692,68 @@ body.noscroll {
 
 .hidden {
     display: none !important;
+}
+
+.github-graph {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    overflow-x: auto;
+    padding: 12px;
+    background-color: var(--win-gray);
+    border: 2px solid;
+    border-color: var(--win-gray-dark) var(--win-white) var(--win-white) var(--win-gray-dark);
+    box-shadow: 1px 1px 0 0 var(--win-black) inset;
+    margin-bottom: 5px;
+}
+
+.graph-week {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.graph-cell {
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    flex-shrink: 0;
+    cursor: help;
+}
+
+/* Empty cells are sunken */
+.graph-cell.level-0 {
+    border-color: var(--win-gray-dark) var(--win-white) var(--win-white) var(--win-gray-dark);
+    background-color: var(--win-gray);
+}
+
+/* Active cells are raised and vividly colored (like Defrag/Monitors) */
+.graph-cell.level-1 {
+    background-color: #008080; /* Teal */
+    border-color: #00cccc #003333 #003333 #00cccc;
+}
+.graph-cell.level-2 {
+    background-color: #0000ff; /* Blue */
+    border-color: #6666ff #000080 #000080 #6666ff;
+}
+.graph-cell.level-3 {
+    background-color: #000080; /* Navy */
+    border-color: #0000ff #000040 #000040 #0000ff;
+}
+.graph-cell.level-4 {
+    background-color: #ff00ff; /* Magenta */
+    border-color: #ff66ff #800080 #800080 #ff66ff;
+}
+
+.graph-cell.empty-pad {
+    border-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.graph-cell:not(.empty-pad):hover {
+    outline: 1px dotted var(--win-white);
+    outline-offset: -2px;
+    z-index: 10;
+    filter: brightness(1.2);
 }

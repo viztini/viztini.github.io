@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTabs();
     initKonamiCode();
     initBSOD();
+    loadStatusUpdate();
 });
 
 let allPosts = [];
@@ -23,7 +24,7 @@ async function loadPosts() {
         });
 
         const path = window.location.pathname;
-        if (path.endsWith('index.html') || path === '/' || path.endsWith('/')) {
+        if (path.endsWith('blog.html')) {
             renderRecentPosts();
             initSearch();
             initTagFiltering();
@@ -38,6 +39,28 @@ async function loadPosts() {
         if (container) {
             container.innerHTML = '<p class="error">> ERROR: FAILED TO LOAD SYSTEM DATA...</p>';
         }
+    }
+}
+
+async function loadStatusUpdate() {
+    const dateContainer = document.getElementById('status-date');
+    const textContainer = document.getElementById('status-text');
+    
+    if (!dateContainer || !textContainer) return;
+
+    try {
+        const response = await fetch('status.json');
+        if (!response.ok) throw new Error('Failed to fetch status');
+        
+        const status = await response.json();
+        
+        dateContainer.textContent = `[ ${status.date} ${status.time} ]`;
+        textContainer.textContent = status.status_text;
+        
+    } catch (error) {
+        console.error('Error loading status:', error);
+        dateContainer.textContent = '[ STATUS: OFFLINE ]';
+        textContainer.textContent = 'Unable to connect to subsystem telemetry.';
     }
 }
 
@@ -95,6 +118,8 @@ function renderRecentPosts() {
     initPagination();
     attachTagListeners();
 }
+
+
 
 function renderArchive() {
     const container = document.querySelector('.archive-section');
@@ -398,7 +423,7 @@ bsod.innerHTML = `
         document.addEventListener('keydown', handleReboot);
     }, 500);
 
-    return "Kernel panic. CPU halted.";
+    return "KERNEL PANIC";
 };
 
 function initBSOD() {

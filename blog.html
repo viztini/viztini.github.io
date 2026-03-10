@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="viztini's website - exploring the digital frontier">
+    <meta name="author" content="viztini">
+    <meta property="og:title" content="viztini's website">
+    <meta property="og:description" content="exploring the digital frontier">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Blog - viztini's website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="max-width-container">
+            <div class="window-frame">
+                <div class="title-bar">
+                    <div class="title-bar-left">
+                        <img src="assets/favicon.ico" alt="" class="title-icon">
+                        <span class="title-text">Blog - viztini's website</span>
+                    </div>
+                    <div class="title-buttons">
+                        <button class="title-button">_</button>
+                        <button class="title-button">□</button>
+                        <button class="title-button">×</button>
+                    </div>
+                </div>
+
+                <div class="window-content">
+                    <div class="header">
+                        <h1>Blog Logs</h1>
+                        <p class="subtitle">// exploring the digital frontier</p>
+                    </div>
+
+                    <nav class="nav-bar">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="blog.html" class="nav-link active">Blog</a>
+                        <a href="archive.html" class="nav-link">Archive</a>
+                        <a href="links.html" class="nav-link">Network</a>
+                    </nav>
+
+
+
+                    <div class="search-container">
+                        <div class="search-bar">
+                            <label for="post-search">Find:</label>
+                            <input type="text" id="post-search" placeholder="Search posts..." autocomplete="off">
+                            <button id="clear-search" class="hidden">×</button>
+                        </div>
+                        <div id="filter-status" class="filter-status hidden">
+                            <span>Filtering by: <strong id="active-filter-name"></strong></span>
+                            <button id="reset-filters">Clear All</button>
+                        </div>
+                    </div>
+
+                    <div class="blog-section" id="blog-container">
+                        <h2 class="section-title">Recent Posts</h2>
+                        <!-- Posts are loaded dynamically from posts.json -->
+                    </div>
+
+                    <button id="load-more-btn" class="hidden">Load More...</button>
+
+                    <footer class="footer">
+                        <p>Best viewed in Netscape Navigator 4.0 at 800x600</p>
+                        <p>© 2026 viztini | All rights reserved</p>
+                    </footer>
+                </div>
+            </div>
+
+            <div class="status-bar">
+                <div class="status-item">Ready</div>
+                <div class="status-item">Connected to the Wired</div>
+                <div class="status-item" style="width: 50px;">NT '95</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
