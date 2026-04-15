@@ -364,7 +364,6 @@ windows_note() {
 
 # ── main ──────────────────────────────────────────────────────────────────────
 main() {
-    banner
     sep
     detect_os
     windows_note
