@@ -313,6 +313,22 @@ body.noscroll {
 
 .post-date {
     font-size: 11px;
+    cursor: help;
+}
+
+.future-badge {
+    display: inline-block;
+    background: var(--win-navy);
+    color: var(--win-white);
+    font-size: 9px;
+    font-weight: bold;
+    padding: 1px 5px;
+    margin-left: 4px;
+    border: 1px solid var(--win-white);
+    box-shadow: 1px 1px 0 0 var(--win-black);
+    letter-spacing: 0.3px;
+    vertical-align: middle;
+    cursor: help;
 }
 
 .post-content {
@@ -334,6 +350,13 @@ body.noscroll {
 .tag {
     font-size: 10px;
     color: var(--win-gray-dark);
+    cursor: pointer;
+}
+
+.tag:hover {
+    color: var(--win-navy);
+    text-decoration: underline;
+    text-decoration-style: dotted;
 }
 
 #load-more-btn {

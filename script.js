@@ -98,7 +98,7 @@ function renderRecentPosts() {
                 <div class="blog-post-inner">
                     <div class="post-header">
                         <h3>${displayTitle}</h3>
-                        <span class="post-date">${post.date}</span>
+                        <span class="post-date" data-raw-date="${post.date}">${post.date}</span>
                     </div>
                     <div class="post-content">${displayContent}</div>
                     <div class="post-tags">
@@ -117,6 +117,7 @@ function renderRecentPosts() {
 
     initPagination();
     attachTagListeners();
+    initRelativeDates();
 }
 
 
@@ -153,7 +154,7 @@ function renderArchive() {
                         ${post.tags.map(tag => `<span class="tag-small">${tag}</span>`).join('')}
                     </div>
                 </div>
-                <span class="archive-date">${post.date}</span>
+                <span class="archive-date" data-raw-date="${post.date}">${post.date}</span>
             </div>
         `).join('');
 
@@ -188,6 +189,7 @@ function initPagination() {
         loadMoreBtn.classList.remove('hidden');
 
         const newBtn = loadMoreBtn.cloneNode(true);
+        newBtn.textContent = '> LOAD MORE FILES...';
         loadMoreBtn.parentNode.replaceChild(newBtn, loadMoreBtn);
 
         newBtn.addEventListener('click', () => {
@@ -215,26 +217,46 @@ function initRelativeDates() {
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
     dateElements.forEach(el => {
-        const dateStr = el.textContent.trim();
+        const dateStr = el.getAttribute('data-raw-date') || el.textContent.trim();
         const parts = dateStr.split('.');
         if (parts.length === 3) {
-            const postDate = new Date(
-                parseInt(parts[0]),
-                parseInt(parts[1]) - 1,
-                parseInt(parts[2])
-            );
+            const year = parseInt(parts[0]);
+            const month = parseInt(parts[1]) - 1;
+            const day = parseInt(parts[2]);
+
+            // Validate the date before constructing it — catch things like month 17
+            const isValidDate = month >= 0 && month <= 11 && day >= 1 && day <= 31;
+            if (!isValidDate) {
+                el.textContent = dateStr + ' [invalid date]';
+                el.style.color = 'var(--win-gray-dark)';
+                el.title = 'This date looks malformed';
+                return;
+            }
+
+            const postDate = new Date(year, month, day);
+
+            // Store raw date as tooltip so relative labels aren't opaque
+            el.title = dateStr;
 
             const diffTime = today - postDate;
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-            if (diffDays >= 0 && diffDays < 7) {
-                if (diffDays === 0) {
-                    el.textContent = "Today";
-                } else if (diffDays === 1) {
-                    el.textContent = "Yesterday";
-                } else {
-                    el.textContent = `${diffDays} days ago`;
-                }
+            if (diffDays < 0) {
+                // Post is dated in the future — flag it clearly
+                const daysAhead = Math.abs(diffDays);
+                const futureBadge = document.createElement('span');
+                futureBadge.className = 'future-badge';
+                futureBadge.textContent = 'how is this in the future?';
+                futureBadge.title = `This post is dated ${daysAhead} day(s) from now`;
+
+                el.textContent = dateStr + ' ';
+                el.appendChild(futureBadge);
+            } else if (diffDays === 0) {
+                el.textContent = 'Today';
+            } else if (diffDays === 1) {
+                el.textContent = 'Yesterday';
+            } else if (diffDays < 7) {
+                el.textContent = `${diffDays} days ago`;
             }
         }
     });
