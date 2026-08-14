@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Start_Page.exe</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="window-frame">
+
+        <!-- window header -->
+        <header class="title-bar">
+            <div class="title-bar-left">
+                <div class="title-icon"></div>
+                <span class="title-text">Navi_Interface.exe</span>
+            </div>
+
+            <div class="title-buttons">
+                <button class="title-button" aria-label="Minimize">_</button>
+                <button class="title-button" aria-label="Maximize">□</button>
+                <button class="title-button" id="btn-close" aria-label="Close">×</button>
+            </div>
+        </header>
+
+        <div class="window-content">
+
+            <!-- page header -->
+            <header class="header">
+                <h1>SYSTEM DASHBOARD</h1>
+                <div id="lain-subtitle" title="System status">
+                    Present Day, Present Time...
+                </div>
+            </header>
+
+            <!-- search -->
+            <form class="search-bar" id="search-form">
+                <label for="search-input">Query:</label>
+
+                <input
+                    id="search-input"
+                    type="text"
+                    placeholder="Search the web..."
+                    autocomplete="off"
+                    autofocus
+                >
+
+                <button type="button" id="clear-search">×</button>
+                <button type="submit" class="win95-button">Execute</button>
+            </form>
+
+            <!-- tabs -->
+            <nav class="w95-tabs">
+                <button class="w95-tab active" data-target="shortcuts">
+                    Shortcuts
+                </button>
+
+                <button class="w95-tab" data-target="terminal">
+                    Terminal
+                </button>
+
+                <button class="w95-tab" data-target="notes">
+                    Notes
+                </button>
+            </nav>
+
+            <div class="w95-tab-content-container">
+
+                <!-- shortcuts -->
+                <section class="w95-tab-pane active" id="pane-shortcuts">
+                    <div class="w95-icon-grid" id="bookmark-container"></div>
+                </section>
+
+                <!-- terminal -->
+                <section class="w95-tab-pane" id="pane-terminal">
+                    <div class="terminal-section" id="term-container">
+
+                        <div class="terminal-content" id="terminal-output">
+                            > System initialized.<br>
+                            > Type 'help' for available commands.<br>
+                        </div>
+
+                        <div class="terminal-input-line">
+                            <span class="prompt-symbol">navi@system:~$</span>
+                            <input id="terminal-input" type="text" autocomplete="off">
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- notes -->
+                <section class="w95-tab-pane" id="pane-notes">
+                    <h3 class="section-title">Quick Memo Pad</h3>
+
+                    <div class="memo-container">
+                        <textarea
+                            id="memo-textarea"
+                            placeholder="Type your persistent notes or snippets here..."
+                        ></textarea>
+
+                        <div class="memo-actions">
+                            <button class="win95-button" id="memo-clear-btn">
+                                Clear Pad
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- status bar -->
+            <footer class="status-bar">
+                <div class="status-item" id="status-text">
+                    Connection established.
+                </div>
+
+                <div class="status-item" id="memo-status">
+                    Notes: Clean
+                </div>
+
+                <div class="status-item" id="system-clock">
+                    00:00:00
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
